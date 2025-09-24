@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de Login e cadastro</title>
+    <link rel="preload" as="image" href="corridor3.jpg">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,600;1,100&display=swap');
+    body{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        list-style: none;
+        font-family: "Poppins", sans-serif;
+        font-weight: 200;      
+        display: flex;
+        justify-content: space-between;
+        background-image: url('corridor3.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position:center ;
+    }
+/* ----------------Botões--------------- */
+    button {
+        margin: 0;
+        border: hidden;
+        padding: 4px; 
+        background-color: rgb(255, 255, 255);
+        font: inherit;
+        cursor: pointer;
+        outline: none;
+        box-sizing: 100%;
+        justify-self: center;
+        padding: 20px,10px,10px,20px;
+    }
+    button:hover{
+        scale: 1.1;
+        background-color: rgb(228, 228, 228);
+        transition: 300ms;
+    }
+/* ----------------inputs---------------- */
+    input {
+        all: unset;
+        box-sizing: border-box;
+        width: 80%;
+        padding: 4px;
+        box-shadow: inset 0px 0px 8px 1px rgba(102, 102, 102, 0.185);
+        background-color: rgb(202, 202, 202);
+        
+    }
+/* ----------------clique aqui---------------- */
+    #click{
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+        outline: none;
+        color: rgba(0, 68, 255, 0.582);
+        transition: 300ms;
+    }
+    #click:hover{
+        color: blue;
+        scale: 1.0;
+        transition: 500ms;
+    }
+/* ----------------telas---------------- */
+    .tela1{
+        height: 100vh;
+        width: 25%;        
+        align-content: center;
+        background-color: rgba(255, 255, 255, 0.884);
+        color: rgba(0, 68, 255, 0.582);
+        padding-left: 4%;
+    }
+    #tela_cadastro{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: left;
+    }
+    .tela2{
+        height: 100vh;
+        width: 25%;
+        align-content: center;
+        background-color: rgba(255, 255, 255, 0.884);
+        color: rgba(0, 68, 255, 0.582);
+        padding-left: 4%;        
+    }
+    #tela_login{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: left;
+    }
+    h1{
+        justify-self: center;
+        padding-right: 15%;
+    }
+</style>
+<body>
+        <div class="tela1"id="PrimeiraTela">
+            <section id="tela_cadastro" style="display: none;">
+                <h1>Cadastro</h1>
+                <br>
+                <span>crie seu login:</span>
+                <br>
+                <input type="text" id="input_flogin">
+                <br><br>
+                <span>Insíra uma Senha:</span>
+                <br>
+                <input type="text" id="input_fsenha">
+                <br><br>
+                <button onclick="cadastro()">Cadastrar</button>
+                <br>
+                <p>Já possui uma conta? <button onclick="show_login()" id="click"> Clique aqui.</button></p>
+                <div id="show_cadastro"></div>  
+            </section>
+        </div>    
+        <div class="tela2"id="segundaTela">
+            <section id="tela_login">
+                <h1>Login</h1>
+                <br>
+                <span>Insíra seu login:</span>
+                <br>
+                <input type="text" id="input_login">
+                <br><br>
+                <span>Insíra sua Senha:</span>
+                <br>
+                <input type="text" id="input_senha">
+                <div id="show_tentativas"></div>
+                <br><br>  
+                <button onclick="verlogin()">Entrar</button>
+                <br>
+                <p>Não possui uma conta? <button onclick="show_cadastro()" id="click"> Clique aqui.</button></p>
+                
+            </section>
+        </div>
+    
+    
+        <!-- <div class="telaBloqueada" id="tela_bloqueada">
+            <h1>Conta bloqueada! Cheque seu email para desbloqueala e tentar novamente.</h1>
+        </div> -->
+
+</body>
+</html>
+<script>
+// variaveis para login e senhas corretas que serão definidas ao cadastra-las nos inputs da tela de cadastro
+    var loginC
+    var senhaC
+// contador de tentativas de *LOGIN*
+    var numTentativas=5
+// função para mostrar a tela de cadastro
+    function show_cadastro(){
+        tela_login.style.display="none";
+        tela_cadastro.style.display="block";
+        input_flogin.value=''
+        input_fsenha.value=''
+
+    }
+// função para mostrar a tela de login
+    function show_login(){
+        tela_cadastro.style.display="none";
+        tela_login.style.display="block";
+    }
+// função que guarda os dados cadastrados
+    function cadastro(){
+        if(input_flogin.value!=''){
+            if(input_fsenha.value!=''){
+                loginC=input_flogin.value
+                senhaC=input_fsenha.value
+                alert(`Cadastro realizado com sucesso!`)
+                input_flogin.value=''
+                input_fsenha.value=''
+            }else{
+                alert(`Crie uma senha válida`)
+            }
+        }else{
+            alert(`Crie um Login válido`)
+        }
+        
+    }
+// função para verificar se as informações de login estão corretas
+    function verlogin(){
+        var loginInp=input_login.value
+        var senhaInp=input_senha.value
+        if(numTentativas>0){
+            if(loginInp==loginC&&senhaInp==senhaC){
+                    alert(`Login feito com sucesso, seja bem vindo(a), ${loginC}!`)
+            }else{
+                show_tentativas.innerHTML=`Tentativas restantes: ${--numTentativas}`
+                alert(`Login ou senha inválidos! Tente novamente.`)
+            }
+            
+        }else{
+            // tela_bloqueada.style.display="fixed"
+            alert(`Sua conta foi bloqueada! Cheque seu email para liberar a conta e tentar novamente.`)
+            input_login.innerHTML=disabled
+        }
+    }
+</script>
