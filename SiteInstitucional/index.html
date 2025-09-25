@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMF - Institucional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="" alt="logo-smf">
+        </div>
+        <!-- Conteúdo centralizado(do header) -->
+        <div class="conteudo">
+            <h1>Início</h1>
+            <h1>Sobre nós</h1>
+            <h1>Nossa Equipe</h1>
+            <h1>Calculadora Financeira</h1>
+        </div>
+        <!-- Botões do Header -->
+        <div style="gap: 20px;">
+            <button class="cadastro">Login</button>
+        </div>
+    </div>
+    <!-- ____________________________ -->
+    <!-- Conteúdo do Carrossel -->
+    <div class="carrossel">
+        <div class="carrosel-conteudo">
+            <img id="ImgCarrossel" onmouseenter="escurecerCarrossel()" onmouseleave="clarearCarrossel()"
+                src="Imagens/Nosso-Negócio.png" alt="carrossel-img">
+        </div>
+    </div>
+    <!-- ____________________________ -->
+    <!-- Conteúdo do projeto -->
+    <!-- https://app.haikei.app/ -->
+    <div class="sobre-projeto">
+        <h2>SOBRE NOSSO PROJETO</h2>
+        <div class="sobre-conteudo">
+            <div class="projeto-img">
+                <img style="width: 100%;" src="Imagens/SensorArduinoTeste.webp" alt="projeto-imagem">
+            </div>
+            <div class="projeto-texto">
+                <h1>Sensor Ultrassônico em varejos</h1>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta animi sed recusandae enim in. Omnis quisquam obcaecati nostrum esse, qui hic ex reprehenderit vel cupiditate doloremque debitis fuga porro laborum.
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function escurecerCarrossel() {
+        var img = ImgCarrossel;
+        img.style.filter = "brightness(50%)"; // Faz com que ao mouse passar por cima da imagem, a imagem escureça
+        img.style.transform = "scale(1.05)"; // Faz com que a mesma aumente seu tamanho em 5% tbm
+    }
+
+    function clarearCarrossel() {
+        var img = ImgCarrossel;
+        img.style.filter = "brightness(100%)"; // Ao mouse sair da imagem, volta ao seu brilho normal
+        img.style.transform = "scale(1)" // Seu tamanho tbm volta ao normal
+    } 
+</script>
